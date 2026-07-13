@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette — sourced directly from sprindia.com */
+  --color-burgundy: #5c1029;
+  --color-burgundy-deep: #3e0a1c;
+  --color-burgundy-light: #7a1836;
+  --color-navy: #101b3d;
+  --color-navy-deep: #0a1229;
+  --color-gold: #c9a227;
+  --color-gold-light: #e2c05f;
+  --color-gold-pale: #f1e2b0;
+  --color-cream: #faf8f4;
+  --color-cream-dim: #f2ede2;
+  --color-ink: #1c1a22;
+
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --ease-masterplan: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: auto;
+  background: var(--color-cream);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-cream);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-navy-deep);
+}
+
+/* Paper-grain texture overlay, used as a fixed layer behind content */
+.grain-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Hide native cursor only where our custom cursor is active */
+.cursor-active,
+.cursor-active a,
+.cursor-active button {
+  cursor: none;
+}
+
+@media (max-width: 767px), (pointer: coarse) {
+  .cursor-active,
+  .cursor-active a,
+  .cursor-active button {
+    cursor: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.font-script {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-optical-sizing: auto;
+}
